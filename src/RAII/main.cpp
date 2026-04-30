@@ -1,18 +1,52 @@
 #include <fstream>
 #include <iostream>
+#include <stdexcept>
+#include <string>
+
+class FileHandler
+{
+public:
+    explicit FileHandler(const std::string &filename)
+        : file(filename)
+    {
+        if (!file.is_open())
+        {
+            throw std::runtime_error("Failed to open file: " + filename);
+        }
+    }
+    // The destructor ensures that the file is properly closed when the FileHandler object
+    // goes out of scope, preventing resource leaks.
+    ~FileHandler()
+    {
+        if (file.is_open())
+        {
+            file.close();
+        }
+    }
+
+    // Disables copying to prevent multiple instances managing the same resource.
+    FileHandler(const FileHandler &) = delete;
+    FileHandler &operator=(const FileHandler &) = delete;
+    FileHandler(FileHandler &&) = default;
+    FileHandler &operator=(FileHandler &&) = default;
+
+    std::ofstream &get() { return file; }
+
+private:
+    std::ofstream file;
+};
 
 int main()
 {
-    // RAII: Resource Acquisition Is Initialization
-    // ofstream é um recurso que adquire um arquivo e
-    // o libera automaticamente quando sai do escopo.
-    std::ofstream file("example.txt");
-    if (!file)
+    try
     {
-        std::cerr << "Não foi possível abrir o arquivo\n";
+        FileHandler file("example.txt");
+        file.get() << "Hello RAII\n";
+        // The file will be closed automatically when exiting the scope.
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
         return 1;
     }
-
-    file << "Hello RAII\n";
-    // O arquivo é fechado automaticamente ao sair do escopo.
 }
