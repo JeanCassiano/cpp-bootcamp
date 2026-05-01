@@ -2,7 +2,7 @@
 
 ## What is it?
 A pointer to function in C++ is a pointer that stores the address of a function. It permits calling function indirectly, stores callbacks e
-and selects behaviour at runtime.
+and selects behavior at runtime.
 
 ## Why is it useful?
 
@@ -31,6 +31,6 @@ int execute(int (*op)(int, int), int x, int y) {
 
 ## When to use?
 - Callback functions in algorithms or APIs.
-- Dynamic selection of behaviour.
+- Dynamic selection of behavior.
 - Implementation of function tables and simple plugins.
 
