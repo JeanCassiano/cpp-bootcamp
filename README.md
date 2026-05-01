@@ -14,3 +14,5 @@ A hands-on repository dedicated to studying and implementing core concepts in C+
 * CMake
 * GCC / GNU Make
 * Linux / WSL2
+
+
