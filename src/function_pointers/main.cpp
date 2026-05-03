@@ -3,7 +3,7 @@ using namespace std;
 
 // Function pointer example: estimating time based on number of lines of code
 // To use a function pointer, we define a function that takes a pointer to a
-// function as an argument. The arfument needs to have the same return type and
+// function as an argument. The argument needs to have the same return type and
 // parameters as the function pointer we want to use. In this example,
 // we have two functions, time1 and time2, that estimate the time based on
 // the number of lines of code.
@@ -23,6 +23,7 @@ double time2(int lines)
 {
     return 0.5 * lines + 10;
 }
+
 int main()
 {
     int lines = 75;
