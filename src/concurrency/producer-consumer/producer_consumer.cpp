@@ -19,8 +19,6 @@
  *  - Each consumer prints its unique thread ID for clarity.
  *  - Used cv.notify_all() to wake all waiting consumers when new items are available.
  *
- * Author: Your Name
- * Date: 2026-05-16
  */
 
 #include <iostream>
